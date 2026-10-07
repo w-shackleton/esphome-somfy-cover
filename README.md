@@ -15,17 +15,17 @@ Follow instructions for the CC1101 driver here: https://github.com/LSatan/SmartR
 
 Import this module:
 
-```
+```yaml
 external_components:
   - source:
       type: git
       url: https://github.com/w-shackleton/esphome-somfy-cover
-      components: [ somfy_cover ]
+    components: [ somfy_cover ]
 ```
 
 Configure your CC1101 remote, specifying which pins you used:
 
-```
+```yaml
 somfy_cover:
   id: somfy_remote
   gdo0: 13
@@ -38,7 +38,7 @@ somfy_cover:
 
 ...and configure some covers:
 
-```
+```yaml
 cover:
   - platform: somfy_cover
     id: bedroom_blind
@@ -56,6 +56,7 @@ cover:
     # Some blinds need the "UpDown" button to be pressed to pair
     updown_button:
       name: Bedroom blind UpDown
+  # ...and configure more covers
   - platform: somfy_cover
     id: Study blind
     ...
