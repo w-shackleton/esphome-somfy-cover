@@ -16,26 +16,26 @@ class SomfyCoverHub : public Component {
   void dump_config() override;
 
   inline void set_gdo0(byte gdo0) {
-    gdo0_ = gdo0;
+    this->gdo0_ = gdo0;
   }
   inline void set_gdo2(byte gdo2) {
-    gdo2_ = gdo2;
+    this->gdo2_ = gdo2;
   }
   inline void set_csn(byte csn) {
-    csn_ = csn;
+    this->csn_ = csn;
   }
   inline void set_sck(byte sck) {
-    sck_ = sck;
+    this->sck_ = sck;
   }
   inline void set_mosi(byte mosi) {
-    mosi_ = mosi;
+    this->mosi_ = mosi;
   }
   inline void set_miso(byte miso) {
-    miso_ = miso;
+    this->miso_ = miso;
   }
 
   inline byte get_gdo0() const {
-    return gdo0_;
+    return this->gdo0_;
   }
   
  protected:

@@ -14,23 +14,23 @@ namespace somfy_cover {
 
 class SomfyCover : public cover::Cover, public Component {
  private:
-  SomfyRemote *remote;
-  NVSRollingCodeStorage *storage;
+  SomfyRemote *remote_;
+  NVSRollingCodeStorage *storage_;
 
  public:
-  SomfyCover() : Cover(), remote(NULL), storage(NULL) {}
+  SomfyCover() : Cover(), remote_(NULL), storage_(NULL) {}
   ~SomfyCover() {
-    delete remote;
-    delete storage;
+    delete this->remote_;
+    delete this->storage_;
   }
 
-  void configure(const char* key, uint32_t remoteCode, const SomfyCoverHub* hub);
+  void configure(const char* key, uint32_t remote_code, const SomfyCoverHub* hub);
 
   void setup() override;
   void loop() override;
   void dump_config() override;
   cover::CoverTraits get_traits() override;
-  void sendCC1101Command(Command command);
+  void send_cc1101_command(Command command);
   
  protected:
   void control(const cover::CoverCall &call) override;
@@ -38,26 +38,28 @@ class SomfyCover : public cover::Cover, public Component {
 
 class SomfyButton : public button::Button, public Component {
  private:
-  Command command;
+  Command command_;
   SomfyCover *cover_;
  public:
 
   void setup() override {}
+
   void press_action() override {
-    cover_->sendCC1101Command(command);
+    this->cover_->send_cc1101_command(this->command_);
   }
+
   void dump_config() override {}
 
   void setCover(SomfyCover* cover) {
-    cover_= cover;
+    this->cover_= cover;
   }
 
   void setProgram() {
-    command = Command::Prog;
+    this->command_ = Command::Prog;
   }
 
   void setUpDown() {
-    command = Command::UpDown;
+    this->command_ = Command::UpDown;
   }
 };
 
