@@ -1,8 +1,18 @@
+esphome:
+  name: example_somfy_configuration
+
+esp32:
+  board: esp32-poe-iso
+  framework:
+    type: arduino
+
 external_components:
   - source:
       type: git
       url: https://github.com/w-shackleton/esphome-somfy-cover
     components: [ somfy_cover ]
+  # Or for local development:
+  # - source: components
 
 somfy_cover:
   id: somfy_remote
